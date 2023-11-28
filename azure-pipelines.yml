@@ -11,7 +11,7 @@ pool:
 steps:
 - task: AzureCLI@2
   inputs:
-    azureSubscription: 'MSDN(031e997d-b908-4dd0-9dba-c440758aec29)'
+    azureSubscription: 'iac-aad-deploy-dev'
     scriptType: 'ps'
     scriptLocation: 'inlineScript'
     inlineScript: 'az account show'
