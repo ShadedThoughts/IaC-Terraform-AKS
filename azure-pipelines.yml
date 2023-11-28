@@ -9,12 +9,13 @@ pool:
   vmImage: ubuntu-latest
 
 steps:
+
 - task: AzureCLI@2
   inputs:
     azureSubscription: 'iac-aad-deploy-dev'
-    scriptType: 'ps'
+    scriptType: 'pscore'
     scriptLocation: 'inlineScript'
-    inlineScript: 'az account show'
+    inlineScript: 'az --version'
 
 - task: TerraformCLI@0
   displayName: Terraform Init
