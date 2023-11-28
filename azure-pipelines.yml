@@ -15,18 +15,16 @@ steps:
     command: 'init'
     allowTelemetryCollection: true
 
-- task: TerraformCLI@0
-  displayName: Terraform Plan
+- task: TerraformCLI@1
   inputs:
     command: 'plan'
-    environmentServiceName: 'youtube-app-service-connection'
-    allowTelemetryCollection: false
-
-- task: TerraformCLI@0
-  displayName: Terraform Apply
-  inputs:
-    command: 'apply'
-    environmentServiceName: 'youtube-app-service-connection'
+    environmentServiceName: 'iac-aad-deploy-dev'
+    providerAzureRmSubscriptionId: '031e997d-b908-4dd0-9dba-c440758aec29'
     allowTelemetryCollection: true
 
-
+- task: TerraformCLI@2
+  inputs:
+    command: 'apply'
+    environmentServiceName: 'iac-aad-deploy-dev'
+    providerAzureRmSubscriptionId: '031e997d-b908-4dd0-9dba-c440758aec29'
+    allowTelemetryCollection: true
