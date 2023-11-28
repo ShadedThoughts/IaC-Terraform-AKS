@@ -9,6 +9,15 @@ pool:
   vmImage: ubuntu-latest
 
 steps:
+- task: AzureCLI@2
+  inputs:
+    azureSubscription: 'MSDN(031e997d-b908-4dd0-9dba-c440758aec29)'
+    scriptType: 'ps'
+    scriptLocation: 'inlineScript'
+    inlineScript: |
+      az --version
+      az account show
+
 - task: TerraformCLI@0
   displayName: Terraform Init
   inputs:
