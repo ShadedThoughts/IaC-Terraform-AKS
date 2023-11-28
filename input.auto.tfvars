@@ -1,34 +1,34 @@
 aks_vnet_name = "aksvnet"
 
-sshkvsecret = "akssshpubkey"
+sshkvsecret = "ssh-key-secret-dev"
 
-clientidkvsecret = "spn-id"
+clientidkvsecret = "aad-id-kvsec-dev"
 
-spnkvsecret = "spn-secret"
+spnkvsecret = "aad-iac-kvsec-dev"
 
 vnetcidr = ["10.0.0.0/24"]
 
 subnetcidr = ["10.0.0.0/25"]
 
-keyvault_rg = "aksdemo-rg"
+keyvault_rg = "iac-rg-dev"
 
-keyvault_name = "aksdemocluster-kv"
+keyvault_name = "iac-keyv-dev"
 
-azure_region = "australiaeast"
+azure_region = "uksouth"
 
-resource_group = "aksdemocluster-rg"
+resource_group = "iac-rg-dev"
 
-cluster_name = "aksdemocluster"
+cluster_name = "akstfdemocluster"
 
-dns_name = "aksdemocluster"
+dns_name = "akstfdemocluster"
 
 admin_username = "aksuser"
 
-kubernetes_version = "1.21.7"
+kubernetes_version = "1.27.7"
 
 agent_pools = {
-      name            = "pool1"
-      count           = 2
-      vm_size         = "Standard_D2_v2"
-      os_disk_size_gb = "30"
-    }
+  name            = "pool1"
+  count           = 2
+  vm_size         = "Standard_D2_v2"
+  os_disk_size_gb = "30"
+}
