@@ -67,3 +67,11 @@ variable "agent_pools" {
     }
   )
 }
+
+variable "tfstorage" {
+  type = string
+}
+
+variable "tfstorage_rg" {
+  type = string
+}

@@ -22,6 +22,11 @@ data "azurerm_resource_group" "rg" {
   name = var.resource_group
 }
 
+data "azurerm_storage_account" "tfstorage" {
+  name                = var.tfstorage
+  resource_group_name = var.tfstorage_rg
+}
+
 resource "azurerm_virtual_network" "aks_vnet" {
   name                = var.aks_vnet_name
   resource_group_name = data.azurerm_resource_group.rg.name
