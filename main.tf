@@ -18,29 +18,28 @@ data "azurerm_key_vault_secret" "spn_secret" {
   key_vault_id = data.azurerm_key_vault.azure_vault.id
 }
 
+data "azurerm_resource_group" "rg" {
+  name = var.resource_group
+}
+
 resource "azurerm_virtual_network" "aks_vnet" {
   name                = var.aks_vnet_name
-  resource_group_name = azurerm_resource_group.aks_rg.name
-  location            = azurerm_resource_group.aks_rg.location
+  resource_group_name = data.azurerm_resource_group.rg.name
+  location            = data.azurerm_resource_group.rg.location
   address_space       = var.vnetcidr
 }
 
 resource "azurerm_subnet" "aks_subnet" {
   name                 = "aks_subnet"
-  resource_group_name  = azurerm_resource_group.aks_rg.name
+  resource_group_name  = data.azurerm_resource_group.rg.name
   virtual_network_name = azurerm_virtual_network.aks_vnet.name
   address_prefixes     = var.subnetcidr
 }
 
-resource "azurerm_resource_group" "aks_rg" {
-  name     = var.resource_group
-  location = var.azure_region
-}
-
 resource "azurerm_kubernetes_cluster" "aks_cluster" {
   name                = var.cluster_name
-  location            = azurerm_resource_group.aks_rg.location
-  resource_group_name = azurerm_resource_group.aks_rg.name
+  location            = data.azurerm_resource_group.rg.location
+  resource_group_name = data.azurerm_resource_group.rg.name
   dns_prefix          = var.dns_name
 
 
