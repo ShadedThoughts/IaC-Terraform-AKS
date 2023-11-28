@@ -15,7 +15,7 @@ steps:
     azureSubscription: 'iac-aad-deploy-dev'
     scriptType: 'pscore'
     scriptLocation: 'inlineScript'
-    inlineScript: 'az --version'
+    inlineScript: 'az login --service-principal -u ${env:APP_ID} -p ${env:APP_SECRET} --tenant ${env:TENANT_ID}'
 
 - task: TerraformCLI@0
   displayName: Terraform Init
