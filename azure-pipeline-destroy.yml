@@ -30,3 +30,8 @@ steps:
     backendAzureRmStorageAccountName: 'uohmlopssa'
     backendAzureRmKey: 'terraform.tfstate'
     allowTelemetryCollection: true
+
+- task: TerraformCLI@2
+  inputs:
+    command: 'destroy'
+    allowTelemetryCollection: true
