@@ -32,6 +32,7 @@ steps:
     allowTelemetryCollection: true
 
 - task: TerraformCLI@2
+  displayName: Terraform Destroy
   inputs:
     command: 'destroy'
     allowTelemetryCollection: true
