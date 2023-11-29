@@ -23,7 +23,7 @@ steps:
   displayName: Terraform Init
   inputs:
     command: 'init'
-    # workingDirectory: '$(System.DefaultWorkingDirectory)/terraform/'
+    workingDirectory: '$(System.DefaultWorkingDirectory)'
     backendServiceArm: 'iac-aad-deploy-dev'
     backendAzureRmContainerName: 'tfstate'
     backendAzureRmResourceGroupName: 'UoH-RG'
