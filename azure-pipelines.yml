@@ -24,11 +24,11 @@ steps:
   inputs:
     command: 'init'
     # workingDirectory: '$(System.DefaultWorkingDirectory)/terraform/'
-    # backendServiceArm: 'iac-aad-deploy-dev'
-    # backendAzureRmContainerName: 'tfstate'
-    # backendAzureRmResourceGroupName: 'UoH-RG'
-    # backendAzureRmStorageAccountName: 'uohmlopssa'
-    # backendAzureRmKey: 'terraform.tfstate'
+    backendServiceArm: 'iac-aad-deploy-dev'
+    backendAzureRmContainerName: 'tfstate'
+    backendAzureRmResourceGroupName: 'UoH-RG'
+    backendAzureRmStorageAccountName: 'uohmlopssa'
+    backendAzureRmKey: 'terraform.tfstate'
     allowTelemetryCollection: true
 
 - task: TerraformCLI@1
