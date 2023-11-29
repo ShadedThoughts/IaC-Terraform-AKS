@@ -33,5 +33,9 @@ agent_pools = {
   os_disk_size_gb = "30"
 }
 
-tfstorage    = "uohmlopssa"
-tfstorage_rg = "UoH-RG"
+tfstorage       = "uohmlopssa"
+tfstorage_rg    = "UoH-RG"
+client_id       = "bf838245-c6ba-412f-80f7-a956a3f97b2c"
+client_secret   = "3ce8Q~8he0WZ.2gYje0GVTlySUR.6e6aQYxgibop"
+tenant_id       = "8443926c-a7bf-4f43-8f42-d751e68d4e5f"
+subscription_id = "031e997d-b908-4dd0-9dba-c440758aec29"
