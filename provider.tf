@@ -10,7 +10,7 @@ terraform {
     storage_account_name = "uohmlopssa"
     container_name       = "tfstate"
     key                  = "terraform.tfstate"
-    # access_key           = "${sa_key}"
+    access_key           = var.sa_key
   }
 
 }

@@ -91,3 +91,7 @@ variable "tenant_id" {
 variable "subscription_id" {
   type = string
 }
+
+variable "sa_key" {
+  type = string
+}
