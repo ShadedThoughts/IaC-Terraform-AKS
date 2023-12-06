@@ -95,3 +95,7 @@ variable "subscription_id" {
 variable "sa_key" {
   type = string
 }
+
+variable "acr_name" {
+  type = string
+}

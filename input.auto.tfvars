@@ -18,7 +18,7 @@ azure_region = "uksouth"
 
 resource_group = "iac-rg-dev"
 
-cluster_name = "akstfdemocluster"
+cluster_name = "uohdaimcluster"
 
 dns_name = "akstfdemocluster"
 
@@ -35,6 +35,7 @@ agent_pools = {
 
 tfstorage       = "uohmlopssa"
 tfstorage_rg    = "UoH-RG"
+acr_name        = "uohdaim"
 client_id       = "bf838245-c6ba-412f-80f7-a956a3f97b2c"
 client_secret   = "3ce8Q~8he0WZ.2gYje0GVTlySUR.6e6aQYxgibop"
 tenant_id       = "8443926c-a7bf-4f43-8f42-d751e68d4e5f"

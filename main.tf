@@ -1,34 +1,3 @@
-data "azurerm_client_config" "current" {}
-
-data "azurerm_key_vault" "azure_vault" {
-  name                = var.keyvault_name
-  resource_group_name = var.keyvault_rg
-}
-
-data "azurerm_key_vault_secret" "ssh_public_key" {
-  name         = var.sshkvsecret
-  key_vault_id = data.azurerm_key_vault.azure_vault.id
-}
-
-data "azurerm_key_vault_secret" "spn_id" {
-  name         = var.clientidkvsecret
-  key_vault_id = data.azurerm_key_vault.azure_vault.id
-}
-
-data "azurerm_key_vault_secret" "spn_secret" {
-  name         = var.spnkvsecret
-  key_vault_id = data.azurerm_key_vault.azure_vault.id
-}
-
-data "azurerm_resource_group" "rg" {
-  name = var.resource_group
-}
-
-data "azurerm_storage_account" "tfstorage" {
-  name                = var.tfstorage
-  resource_group_name = var.tfstorage_rg
-}
-
 resource "azurerm_virtual_network" "aks_vnet" {
   name                = var.aks_vnet_name
   resource_group_name = data.azurerm_resource_group.rg.name
@@ -57,10 +26,6 @@ resource "azurerm_kubernetes_cluster" "aks_cluster" {
     os_disk_size_gb = var.agent_pools.os_disk_size_gb
   }
 
-  # identity {
-  #   type = "SystemAssigned"
-  # }
-
   linux_profile {
     admin_username = var.admin_username
     ssh_key {
@@ -76,4 +41,11 @@ resource "azurerm_kubernetes_cluster" "aks_cluster" {
   tags = {
     Environment = "Demo"
   }
+}
+
+resource "azurerm_role_assignment" "aad_role_assignment" {
+  principal_id                     = azurerm_kubernetes_cluster.aad_role_assignment.kubelet_identity[0].object_id
+  role_definition_name             = "AcrPull"
+  scope                            = azurerm_container_registry.aad_role_assignment.id
+  skip_service_principal_aad_check = true
 }
