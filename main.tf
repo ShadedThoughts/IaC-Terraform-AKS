@@ -26,6 +26,10 @@ resource "azurerm_kubernetes_cluster" "aks_cluster" {
     os_disk_size_gb = var.agent_pools.os_disk_size_gb
   }
 
+  identity {
+    type = "SystemAssigned"
+  }
+
   linux_profile {
     admin_username = var.admin_username
     ssh_key {
