@@ -44,8 +44,8 @@ resource "azurerm_kubernetes_cluster" "aks_cluster" {
 }
 
 resource "azurerm_role_assignment" "aad_role_assignment" {
-  principal_id                     = azurerm_kubernetes_cluster.aad_role_assignment.kubelet_identity[0].object_id
+  principal_id                     = azurerm_kubernetes_cluster.aks_cluster.kubelet_identity[0].object_id
   role_definition_name             = "AcrPull"
-  scope                            = azurerm_container_registry.aad_role_assignment.id
+  scope                            = data.azurerm_container_registry.acr.id
   skip_service_principal_aad_check = true
 }
