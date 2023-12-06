@@ -33,3 +33,7 @@ data "azurerm_container_registry" "acr" {
   name                = var.acr_name
   resource_group_name = var.tfstorage_rg
 }
+
+data "azuread_service_principal" "spn_dev" {
+  object_id = data.azurerm_key_vault_secret.spn_id.value
+}

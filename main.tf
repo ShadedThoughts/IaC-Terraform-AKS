@@ -26,10 +26,6 @@ resource "azurerm_kubernetes_cluster" "aks_cluster" {
     os_disk_size_gb = var.agent_pools.os_disk_size_gb
   }
 
-  identity {
-    type = "SystemAssigned"
-  }
-
   linux_profile {
     admin_username = var.admin_username
     ssh_key {
@@ -48,7 +44,7 @@ resource "azurerm_kubernetes_cluster" "aks_cluster" {
 }
 
 resource "azurerm_role_assignment" "aad_role_assignment" {
-  principal_id                     = azurerm_kubernetes_cluster.aks_cluster.kubelet_identity[0].object_id
+  principal_id                     = var.client_id
   role_definition_name             = "AcrPull"
   scope                            = data.azurerm_container_registry.acr.id
   skip_service_principal_aad_check = true
