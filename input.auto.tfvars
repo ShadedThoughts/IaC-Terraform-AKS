@@ -1,4 +1,4 @@
-aks_vnet_name = "aksvnet"
+aks_vnet_name = "aks-VNET"
 
 sshkvsecret = "ssh-key-secret-dev"
 
@@ -18,9 +18,9 @@ azure_region = "uksouth"
 
 resource_group = "iac-rg-dev"
 
-cluster_name = "uohdaimcluster"
+cluster_name = "uohdaimk8scluster"
 
-dns_name = "akstfdemocluster"
+dns_name = "uohdaimclusterdns"
 
 admin_username = "aksuser"
 
