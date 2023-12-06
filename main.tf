@@ -33,10 +33,14 @@ resource "azurerm_kubernetes_cluster" "aks_cluster" {
     }
   }
 
-  service_principal {
-    client_id     = data.azurerm_key_vault_secret.spn_id.value
-    client_secret = data.azurerm_key_vault_secret.spn_secret.value
+  identity {
+    type = "SystemAssigned"
   }
+
+  # service_principal {
+  #   client_id     = data.azurerm_key_vault_secret.spn_id.value
+  #   client_secret = data.azurerm_key_vault_secret.spn_secret.value
+  # }
 
   tags = {
     Environment = "Demo"
@@ -44,7 +48,7 @@ resource "azurerm_kubernetes_cluster" "aks_cluster" {
 }
 
 resource "azurerm_role_assignment" "aad_role_assignment" {
-  principal_id                     = data.azurerm_key_vault_secret.spn_id.value
+  principal_id                     = azurerm_kubernetes_cluster.aks_cluster.kubelet_identity[0].object_id
   role_definition_name             = "AcrPull"
   scope                            = data.azurerm_container_registry.acr.id
   skip_service_principal_aad_check = true

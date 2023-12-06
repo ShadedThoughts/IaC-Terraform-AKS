@@ -11,6 +11,15 @@ pool:
 jobs:
   - job: Destroy
     steps:
+
+      - task: AzureKeyVault@2
+        displayName: Access Keyvault for Credentials
+        inputs:
+          azureSubscription: 'iac-aad-deploy-dev'
+          KeyVaultName: 'iac-keyv-dev'
+          SecretsFilter: '*'
+          RunAsPreJob: false
+
       - task: AzureCLI@2
         displayName: Login to Azure
         inputs:
@@ -18,8 +27,8 @@ jobs:
           scriptType: 'pscore'
           scriptLocation: 'inlineScript'
           inlineScript: |
-            az login -u dami.olayokun@etalopo.com -p P@ssw0rd+1001
-            az account set --subscription '031e997d-b908-4dd0-9dba-c440758aec29'
+            az login -u dami.olayokun@etalopo.com -p $(secretName)
+            az account set --subscription $(subscriptionId)
 
       - task: TerraformCLI@0
         displayName: Terraform Init & Remote Backend
