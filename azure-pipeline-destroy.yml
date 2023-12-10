@@ -43,6 +43,15 @@ jobs:
           allowTelemetryCollection: true
 
       - task: TerraformCLI@2
+        displayName: Terraform Plan
+        inputs:
+          command: 'plan'
+          environmentServiceName: 'iac-aad-deploy-dev'
+          providerAzureRmSubscriptionId: $(subscriptionId)
+          allowTelemetryCollection: true
+          publishPlanResults: 'TerraformPlan'
+
+      - task: TerraformCLI@2
         displayName: Terraform Destroy
         inputs:
           command: 'destroy'
