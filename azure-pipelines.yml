@@ -49,6 +49,7 @@ jobs:
         environmentServiceName: 'iac-aad-deploy-dev'
         providerAzureRmSubscriptionId: $(subscriptionId)
         allowTelemetryCollection: true
+        publishPlanResults: 'TerraformPlan'
 
     - task: TerraformCLI@2
       displayName: Terraform Apply
